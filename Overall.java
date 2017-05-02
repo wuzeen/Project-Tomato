@@ -3,13 +3,26 @@
  */
 import java.util.ArrayList;
 public class Overall {
-
+    private long Created;
     private boolean restEnough=true;
     private ArrayList<String> oncePlan=new ArrayList<String>();
     private ArrayList<String> finishedPlan=new ArrayList<String>();
 
     private int minute=0;
     private int second=0;
+    public Overall(){
+        Created=System.currentTimeMillis();
+    }
+
+    public boolean checkFocus(){
+        long periodReal=System.currentTimeMillis()-Created;
+        long periodWrite=(minute*60+second)*1000;
+        if(periodReal-periodWrite<=2000){
+            return true;
+        }
+        else return false;
+    }
+
     public void removeOncePlan(int i){
         String out=oncePlan.remove(i);
         finishedPlan.add(out);
